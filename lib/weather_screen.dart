@@ -1,9 +1,6 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 
 class WeatherScreen extends StatefulWidget {
@@ -76,19 +73,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
               scrollDirection: Axis.horizontal,
                child: Row(
                 children: [
-                  HourlyForecastItem(),
+                  HourlyForecastItem(timeStamp: '3:00', icon: Icons.cloud, temp: '29°C',),
                
                   //CARD 2
-                  HourlyForecastItem(),
+                  HourlyForecastItem(timeStamp: '9:00', icon: Icons.thunderstorm, temp: '21°C',),
                
                   //CARD 3
-                 HourlyForecastItem(),
+                 HourlyForecastItem(timeStamp: '12:00', icon: Icons.cloud, temp: '28°C',),
                
                   //CARD 4
-                  HourlyForecastItem(),
+                  HourlyForecastItem(timeStamp: '15:00', icon: Icons.sunny, temp: '30°C',),
                
                   //CARD 5
-                  HourlyForecastItem(),
+                  HourlyForecastItem(timeStamp: '18:00', icon: Icons.cloud, temp: '29°C',),
                   ],
                ),
              ),
@@ -104,6 +101,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                Container(
                 padding: const EdgeInsets.all(8.0),
                 child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
                       children: [
@@ -114,7 +112,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         Text('94', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
                        ],
                       ),
-                      SizedBox(width: 40,),
+                      
                       Column(
                       children: [
                         Icon(Icons.wind_power, size: 34,),
@@ -124,7 +122,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         Text('9.4', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
                        ],
                       ),
-                      SizedBox(width: 40,),
+                      
                       Column(
                       children: [
                         Icon(Icons.umbrella, size: 34,),
@@ -147,7 +145,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
 }
 
 class HourlyForecastItem extends StatelessWidget {
-  const HourlyForecastItem({super.key});
+  final IconData icon;
+  final String timeStamp; 
+  final String temp;
+  const HourlyForecastItem({super.key, required this.icon, required this.timeStamp, required this.temp});
 
   @override
   Widget build(BuildContext context) {
@@ -157,13 +158,13 @@ class HourlyForecastItem extends StatelessWidget {
                     width: 120,
                     padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(13)),
-                    child: const Column(
+                    child:  Column(
                       children: [
-                        Text('03:00', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),),
-                        SizedBox(height: 8),
-                        Icon(Icons.cloud, size:32),
-                        SizedBox(height: 8),
-                        Text('37°C', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),)
+                        Text(timeStamp, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),),
+                        const SizedBox(height: 8),
+                        Icon(icon),
+                        const SizedBox(height: 8),
+                        Text(temp, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),)
                       ],
                     ),
                   ),
